@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク管理アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 タスク管理</h1>
+            <p class="subtitle">効率的にタスクを管理しましょう</p>
+        </header>
+
+        <div class="task-input-section">
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="新しいタスクを入力..." />
+                <select id="prioritySelect">
+                    <option value="low">低</option>
+                    <option value="medium" selected>中</option>
+                    <option value="high">高</option>
+                </select>
+                <input type="date" id="dueDateInput" />
+                <button id="addTaskBtn" class="btn btn-primary">追加</button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="active">未完了</button>
+                <button class="filter-btn" data-filter="completed">完了済み</button>
+            </div>
+            <div class="sort-section">
+                <label for="sortSelect">並び替え:</label>
+                <select id="sortSelect">
+                    <option value="date-added">追加日時</option>
+                    <option value="due-date">期限日</option>
+                    <option value="priority">優先度</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="stat-label">総タスク数</span>
+                <span class="stat-value" id="totalTasks">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">未完了</span>
+                <span class="stat-value" id="activeTasks">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">完了済み</span>
+                <span class="stat-value" id="completedTasks">0</span>
+            </div>
+        </div>
+
+        <div class="tasks-section">
+            <ul id="taskList" class="task-list"></ul>
+            <div id="emptyState" class="empty-state">
+                <p>📋 タスクがありません</p>
+                <p class="empty-subtitle">上のフォームから新しいタスクを追加してください</p>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <button id="clearCompletedBtn" class="btn btn-secondary">完了済みを削除</button>
+            <button id="clearAllBtn" class="btn btn-danger">すべて削除</button>
+        </div>
+    </div>
+
+    <!-- 編集モーダル -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>タスクを編集</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editTaskInput" placeholder="タスク名" />
+                <select id="editPrioritySelect">
+                    <option value="low">低</option>
+                    <option value="medium">中</option>
+                    <option value="high">高</option>
+                </select>
+                <input type="date" id="editDueDateInput" />
+            </div>
+            <div class="modal-footer">
+                <button id="saveEditBtn" class="btn btn-primary">保存</button>
+                <button id="cancelEditBtn" class="btn btn-secondary">キャンセル</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
